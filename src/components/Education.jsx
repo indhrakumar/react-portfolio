@@ -1,5 +1,5 @@
 import { GraduationCap, School, School2, ArrowBigRight } from "lucide-react";
-
+import { useTheme } from "../context/ThemeContext";
 import Card from "./Card";
 import { useEffect, useRef, useState } from "react";
 
@@ -43,11 +43,12 @@ const Education = ({ setPage }) => {
       observer.disconnect();
     };
   }, []);
+  const { isDark } = useTheme();
 
   return (
     <div className="flex w-full p-10">
       <div className="mt-5 w-full">
-        <h1 className="text-6xl font-bold font-mulish text-center">
+        <h1 className={`text-6xl font-bold font-mulish text-center text-text `}>
           Education
         </h1>
 
@@ -105,10 +106,10 @@ const Education = ({ setPage }) => {
           </div>
         </div>
 
-        <div className="w-full flex items-center justify-center">
+        <div className={`w-full flex items-center justify-center text-text`}>
           <button
             onClick={() => setPage("skills")}
-            className="flex cursor-pointer gap-3 text-3xl items-center mt-8">
+            className="flex cursor-pointer gap-3 px-5 py-2 rounded-full border border-gray-600 bg-red-700 text-3xl items-center mt-8">
             My Skills
             <ArrowBigRight className="mt-5 -translate-y-2" />
           </button>

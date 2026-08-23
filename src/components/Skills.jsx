@@ -7,8 +7,10 @@ import {
   FaReact,
   FaNodeJs,
   FaGithub,
+  FaJava,
+  FaPython,
 } from "react-icons/fa";
-
+import { useTheme } from "../context/ThemeContext";
 import {
   SiTailwindcss,
   SiTypescript,
@@ -16,11 +18,13 @@ import {
   SiMongodb,
   SiMysql,
   SiIntellijidea,
+  SiC,
 } from "react-icons/si";
 
 import { VscVscode } from "react-icons/vsc";
 
 const Skills = () => {
+  const { isDark } = useTheme();
   const skillsDetails = [
     {
       title: "HTML",
@@ -102,6 +106,40 @@ const Skills = () => {
       bgColor: "bg-blue-600",
       percent: 55,
       discrip: "Type-Safe JavaScript Development",
+      dropShadow: "drop-shadow-[0_0_30px_blue]",
+    },
+    {
+      title: "Python",
+      logo: <FaPython />,
+      cato: "Programming",
+      txtcolour: "text-blue-500",
+      colour: "blue",
+      bgColor: "bg-blue-500",
+      percent: 65,
+      discrip: "Basic Programming & Problem Solving",
+      dropShadow: "drop-shadow-[0_0_30px_blue]",
+    },
+    {
+      title: "Java",
+      logo: <FaJava />,
+      cato: "Programming",
+      txtcolour: "text-red-500",
+      colour: "red",
+      bgColor: "bg-red-500",
+      percent: 75,
+      discrip: "OOP & Core Java",
+      dropShadow: "drop-shadow-[0_0_30px_red]",
+    },
+
+    {
+      title: "C",
+      logo: <SiC />,
+      cato: "Programming",
+      txtcolour: "text-blue-500",
+      colour: "blue",
+      bgColor: "bg-blue-500",
+      percent: 60,
+      discrip: "Programming Fundamentals",
       dropShadow: "drop-shadow-[0_0_30px_blue]",
     },
 
@@ -190,13 +228,13 @@ const Skills = () => {
     },
   ];
   return (
-    <div className="min-h-[calc(100vh-80px) ]">
+    <div className="min-h-[calc(100vh-80px) pt-16 ]">
       <h1
-        className="text-center text-7xl font-bold font-poppins mt-5"
-        style={{ textShadow: "0 0 20px" }}>
-        My <span className="text-cyan-300">Skills</span>
+        className="text-center text-text1 text-7xl font-bold font-poppins"
+        style={{ textShadow: isDark ? "0 0 20px" : "" }}>
+        My <span className="text-text2">Skills</span>
       </h1>
-      <div className="grid max-w-7xl grid-cols-2 lg:grid-cols-3 gap-5 mx-auto p-5 rounded-lg">
+      <div className="grid max-w-7xl grid-cols-2 lg:grid-cols-3 gap-10 mx-auto p-5 rounded-lg">
         {skillsDetails.map((skill, index) => (
           <SkillsCard
             key={index}

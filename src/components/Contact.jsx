@@ -1,9 +1,9 @@
 function Contact() {
   return (
-    <div>
-      <h1>Contact</h1>
-      <p>Email: mahes@example.com</p>
-      <p>Phone: +91 9876543210</p>
+    <div className="text-text">
+      <h1 className="text-9xl">Contact</h1>
+      <p>Email: indhra3834@gmail.com</p>
+      <p>Phone: +91 90******08</p>
     </div>
   );
 }

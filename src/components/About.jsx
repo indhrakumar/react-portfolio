@@ -2,11 +2,12 @@ import indhar from "../assets/indhar.jpg";
 import banner from "../assets/banner.png";
 import { useState, useEffect, useRef } from "react";
 import { ArrowBigRight } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
 
 function About({ setPage }) {
   const [card1Visible, setCard1Visible] = useState(false);
   const [card2Visible, setCard2Visible] = useState(false);
-
+  const { isDark } = useTheme();
   const card1Ref = useRef(null);
   const card2Ref = useRef(null);
 
@@ -50,16 +51,16 @@ function About({ setPage }) {
       {/* Heading */}
       <h1
         style={{
-          textShadow: "1px 3px 50px",
+          textShadow: isDark ? "1px 3px 50px" : "",
         }}
-        className="text-6xl text-center font-bold mb-10 font-poppins">
-        ABOUT <span className="font-mulish text-cyan-300">ME</span>
+        className="text-6xl text-text1 text-center font-bold mb-10 font-poppins">
+        ABOUT <span className="font-mulish text-text2">ME</span>
       </h1>
 
       {/* First Card */}
       <div
         ref={card1Ref}
-        className={`tracking-widest w-full sm:w-3/4 lg:w-1/2 rounded-lg overflow-hidden me-auto bg-card/10 flex flex-col lg:flex-row gap-5 italic text-text transition-all duration-1000 z-1 ${
+        className={`tracking-widest ${isDark ? "shadow-[inset_1px_5px_18px_rgba(255,255,255,0.2)]" : "shadow-[inset_0_0_20px_black]"} w-full sm:w-3/4 lg:w-1/2 rounded-lg overflow-hidden me-auto bg-bgCard flex flex-col lg:flex-row gap-5 italic text-text transition-all duration-1000 z-1 ${
           card1Visible
             ? "opacity-100 translate-x-0"
             : "opacity-0 -translate-x-[200px]"
@@ -81,7 +82,7 @@ function About({ setPage }) {
       {/* Second Card */}
       <div
         ref={card2Ref}
-        className={`w-full  tracking-widest sm:w-3/4 lg:w-1/2 ms-auto mt-10 rounded-lg overflow-hidden bg-card/10 flex flex-col lg:flex-row gap-5 italic text-text transition-all duration-1000 delay-1000 ${
+        className={`w-full ${isDark ? "shadow-[inset_1px_5px_18px_rgba(255,255,255,0.2)]" : "shadow-[inset_0_0_20px_black]"}  tracking-widest sm:w-3/4 lg:w-1/2 ms-auto mt-10 rounded-lg overflow-hidden bg-bgCard flex flex-col lg:flex-row gap-5 italic text-text transition-all duration-1000 delay-1000 ${
           card2Visible
             ? "opacity-100 translate-x-0"
             : "opacity-0 translate-x-[200px]"
@@ -100,7 +101,7 @@ function About({ setPage }) {
       </div>
       <button
         onClick={() => setPage("education")}
-        className="flex cursor-pointer gap-3 text-3xl items-center mt-8 ">
+        className="flex cursor-pointer text-text px-5 py-2 border border-gray-600 rounded-full bg-blue-600/50 gap-3 text-3xl items-center mt-8 ">
         Education <ArrowBigRight className="mt-5 -translate-y-2" />
       </button>
     </div>

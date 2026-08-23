@@ -1,6 +1,9 @@
+import { useTheme } from "../context/ThemeContext";
 const Card = ({ qualification, name, city, year, dept, icon }) => {
+  const { isDark } = useTheme();
   return (
-    <div className="bg-white/8 border border-muted shadow-shadow p-5 mt-5 rounded-lg w-full lg:w-1/2 ">
+    <div
+      className={`${isDark ? "shadow-[5px_5px_15px_rgba(255,255,255,0.2)]" : "shadow-[5px_5px_15px_black]"} bg-bgCard border border-muted shadow-shadow/60 p-5 mt-5 rounded-lg w-full lg:w-1/2 `}>
       <h1 className="text-2xl lg:text-4xl font-mulish flex gap-3 items-center">
         <span className="text-cyan-400 drop-shadow-[0_0_20px_#22d3ee]">
           {icon}

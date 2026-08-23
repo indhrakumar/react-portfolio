@@ -1,9 +1,8 @@
-import { BiDownArrow } from "react-icons/bi";
 import { FaReact } from "react-icons/fa";
 
 function Home({ setPage }) {
   return (
-    <div className="text-text relative w-full min-h-[calc(100vh-80px)] justify-center items-center flex ">
+    <div className="text-text bg-bgDark relative w-full min-h-[calc(100vh-80px)] justify-center items-center flex font-mulish ">
       <div className="p-5  gap-5 flex flex-col rounded-lg">
         <h1
           className=" z-999 animate-pulse text-5xl p-3 font-semibold flex gap-3 justify-center items-center"
@@ -33,7 +32,7 @@ function Home({ setPage }) {
       <div>
         <FaReact
           size={500}
-          className="z-0 absolute opacity-3 text-9xl text-cyan-400 top-1/2 left-1/2 -translate-x-1/2 -translate-y-4/7 "
+          className="z-0 absolute opacity-10 text-9xl text-cyan-400 top-1/2 left-1/2 -translate-x-1/2 -translate-y-4/7 "
         />
       </div>
     </div>
