@@ -1,12 +1,14 @@
 import { GraduationCap, School, School2, ArrowBigRight } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
+import { usePage } from "../context/PageProvider";
 import Card from "./Card";
 import { useEffect, useRef, useState } from "react";
 
-const Education = ({ setPage }) => {
+const Education = ({ handlePage }) => {
   const [Educard1, setEducard1] = useState(false);
   const [Educard2, setEducard2] = useState(false);
   const [Educard3, setEducard3] = useState(false);
+  const { singlePage } = usePage();
 
   const eduCard1ref = useRef(null);
 
@@ -46,17 +48,17 @@ const Education = ({ setPage }) => {
   const { isDark } = useTheme();
 
   return (
-    <div className="flex w-full p-10">
+    <div className="flex w-full p-10 pt-25">
       <div className="mt-5 w-full">
         <h1 className={`text-6xl font-bold font-mulish text-center text-text `}>
           Education
         </h1>
 
-        <div className="mx-5">
+        <div className="mx-5 ">
           {/* B.Tech */}
           <div
             ref={eduCard1ref}
-            className={`flex w-full justify-start transition-all duration-500 ${
+            className={`flex w-full mb-10 justify-start transition-all duration-500 ${
               Educard1
                 ? "opacity-100 translate-x-0"
                 : "opacity-0 -translate-x-[200px]"
@@ -73,7 +75,7 @@ const Education = ({ setPage }) => {
 
           {/* Diploma */}
           <div
-            className={`flex w-full justify-center transition-all duration-500 ${
+            className={`flex w-full mb-10 justify-center transition-all duration-500 ${
               Educard2
                 ? "opacity-100 translate-x-0"
                 : "opacity-0 -translate-x-[200px]"
@@ -100,20 +102,22 @@ const Education = ({ setPage }) => {
               name={"St.Paul's Higher Secondary School"}
               city={"Salem"}
               year={"2017 - 2018"}
-              dept={"State Board"}
+              dept={"10th"}
               icon={<School size={35} />}
             />
           </div>
         </div>
 
-        <div className={`w-full flex items-center justify-center text-text`}>
-          <button
-            onClick={() => setPage("skills")}
-            className="flex cursor-pointer gap-3 px-5 py-2 rounded-full border border-gray-600 bg-red-700 text-3xl items-center mt-8">
-            My Skills
-            <ArrowBigRight className="mt-5 -translate-y-2" />
-          </button>
-        </div>
+        {singlePage && (
+          <div className={`w-full flex items-center justify-center text-text`}>
+            <button
+              onClick={() => handlePage("skills")}
+              className="flex cursor-pointer gap-3   text-xl  animate-pulse items-center mt-8">
+              My Skills
+              <ArrowBigRight className="mt-5 -translate-y-2" />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

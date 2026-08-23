@@ -1,4 +1,5 @@
 import SkillsCard from "./SkillsCard";
+import { usePage } from "../context/PageProvider";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -25,6 +26,7 @@ import { VscVscode } from "react-icons/vsc";
 
 const Skills = () => {
   const { isDark } = useTheme();
+  // const { singlePage } = usePage();
   const skillsDetails = [
     {
       title: "HTML",
@@ -228,13 +230,13 @@ const Skills = () => {
     },
   ];
   return (
-    <div className="min-h-[calc(100vh-80px) pt-16 ]">
+    <div className="min-h-screen pt-25">
       <h1
         className="text-center text-text1 text-7xl font-bold font-poppins"
         style={{ textShadow: isDark ? "0 0 20px" : "" }}>
         My <span className="text-text2">Skills</span>
       </h1>
-      <div className="grid max-w-7xl grid-cols-2 lg:grid-cols-3 gap-10 mx-auto p-5 rounded-lg">
+      <div className="grid max-w-7xl grid-cols-2 lg:grid-cols-3 gap-5 mx-auto p-5 rounded-lg">
         {skillsDetails.map((skill, index) => (
           <SkillsCard
             key={index}
@@ -247,6 +249,7 @@ const Skills = () => {
             percent={skill.percent}
             discrip={skill.discrip}
             dropShadow={skill.dropShadow}
+            delay={index * 85}
           />
         ))}
       </div>

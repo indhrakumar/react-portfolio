@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { PageProvider, usePage } from "./context/PageProvider";
 
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -19,115 +20,159 @@ function App() {
     document.documentElement.classList.toggle("dark", isDark);
   }, [isDark]);
 
-  const pages = [
-    {
-      name: "home",
-      label: "Home",
-    },
-    {
-      name: "about",
-      label: "About",
-    },
-    {
-      name: "education",
-      label: "Education",
-    },
-    {
-      name: "skills",
-      label: "Skills",
-    },
-    {
-      name: "projects",
-      label: "Project",
-    },
-    {
-      name: "contact",
-      label: "Contact",
-    },
-  ];
-
-  const handlePage = (pageName) => {
-    setPage(pageName);
-
-    setTimeout(() => {
-      setIsOpen(false);
-    }, 2000);
-  };
-
   return (
     <ThemeContext.Provider value={{ isDark, setIsDark }}>
-      <div className="min-h-screen w-full relative bg-bgDark">
-        <Navbar
+      <PageProvider>
+        <AppContent
           page={page}
-          setPage={handlePage}
-          setIsOpen={setIsOpen}
+          setPage={setPage}
           isOpen={isOpen}
+          setIsOpen={setIsOpen}
         />
+      </PageProvider>
+    </ThemeContext.Provider>
+  );
+}
 
-        <div className="min-h-[calc(100vh-1000px)] w-full">
-          {page === "home" && <Home setPage={setPage} />}
-          {page === "about" && <About setPage={setPage} />}
-          {page === "education" && <Education setPage={setPage} />}
-          {page === "skills" && <Skills setPage={setPage} />}
-          {page === "projects" && <Projects setPage={setPage} />}
-          {page === "contact" && <Contact setPage={setPage} />}
-        </div>
+function AppContent({ page, setPage, isOpen, setIsOpen }) {
+  const { singlePage } = usePage();
 
-        {/* Mobile Navigation */}
-        <div
-          className={`
-            w-full
-            ${isOpen ? "visible" : "hidden"}
-            relative
-          `}>
-          <div
-            className="
-              fixed
-              bottom-0
-              left-0
-              w-full
-              lg:hidden
-              py-5
-              bg-black/30
-              backdrop-blur-sm
-              overflow-x-auto
-              overflow-y-hidden
-              scrollbar-hide
-            ">
-            <div
-              className="
-                flex
-                w-max
-                gap-5
-                px-[calc(50vw-42.5px)]
-              ">
-              {pages.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handlePage(item.name)}
-                  className={`
-                    min-w-21.25
-                    px-3
-                    py-1
-                    whitespace-nowrap
-                    transition-all
-                    duration-300
-                    scroll-snap-center
-                    font-bold
-                    ${
-                      page === item.name
-                        ? "border border-gray-300 text-black bg-cyan-400 rounded-lg -translate-y-2 scale-110"
-                        : "text-muted"
-                    }
-                  `}>
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </div>
+  const [activePage, setActivePage] = useState("home");
+
+  const pages = [
+    { name: "home", label: "Home" },
+    { name: "about", label: "About" },
+    { name: "education", label: "Education" },
+    { name: "skills", label: "Skills" },
+    { name: "projects", label: "Project" },
+    { name: "contact", label: "Contact" },
+  ];
+
+  useEffect(() => {
+    if (singlePage) return;
+
+    const sections = document.querySelectorAll("[data-section]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActivePage(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-80px 0px -40% 0px",
+        threshold: 0,
+      },
+    );
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => observer.disconnect();
+  }, [singlePage]);
+
+  const handlePage = (pageName) => {
+    if (singlePage) {
+      setPage(pageName);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      setActivePage(pageName);
+    } else {
+      document.getElementById(pageName)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
+    setTimeout(() => setIsOpen(false), 300);
+  };
+
+  const mobileNavigation = (
+    <div className={`w-full ${isOpen ? "visible" : "hidden"} relative`}>
+      <div className="fixed bottom-0 left-0 w-full lg:hidden py-5 bg-bgDark/30 backdrop-blur-sm overflow-x-auto overflow-y-hidden scrollbar-hide">
+        <div className="flex w-max gap-5 px-[calc(50vw-42.5px)]">
+          {pages.map((item) => (
+            <button
+              key={item.name}
+              onClick={() => handlePage(item.name)}
+              className={`min-w-21.25 px-3 py-1 bg-bg rounded-2xl whitespace-nowrap transition-all duration-300 scroll-snap-center font-bold ${
+                activePage === item.name
+                  ? "border border-gray-300 text-black bg-cyan-400 rounded-lg -translate-y-2 scale-110"
+                  : "text-muted"
+              }`}>
+              {item.label}
+            </button>
+          ))}
         </div>
       </div>
-    </ThemeContext.Provider>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen w-full relative bg-bgDark">
+      <Navbar
+        page={page}
+        activePage={activePage}
+        setPage={handlePage}
+        setIsOpen={setIsOpen}
+        isOpen={isOpen}
+      />
+
+      {singlePage ? (
+        <div className="min-h-[calc(100vh-100px)] w-full">
+          {page === "home" && (
+            <Home setPage={setPage} handlePage={handlePage} />
+          )}
+
+          {page === "about" && (
+            <About setPage={setPage} handlePage={handlePage} />
+          )}
+
+          {page === "education" && (
+            <Education setPage={setPage} handlePage={handlePage} />
+          )}
+
+          {page === "skills" && <Skills setPage={setPage} />}
+
+          {page === "projects" && <Projects setPage={setPage} />}
+
+          {page === "contact" && <Contact setPage={setPage} />}
+        </div>
+      ) : (
+        <>
+          <div id="home" data-section className="scroll-mt-20">
+            <Home setPage={setPage} handlePage={handlePage} />
+          </div>
+
+          <div id="about" data-section className="scroll-mt-20">
+            <About setPage={setPage} />
+          </div>
+
+          <div id="education" data-section className="scroll-mt-20">
+            <Education setPage={setPage} />
+          </div>
+
+          <div id="skills" data-section className="scroll-mt-20">
+            <Skills setPage={setPage} />
+          </div>
+
+          <div id="projects" data-section className="scroll-mt-20">
+            <Projects setPage={setPage} />
+          </div>
+
+          <div id="contact" data-section className="scroll-mt-20">
+            <Contact setPage={setPage} />
+          </div>
+        </>
+      )}
+
+      {mobileNavigation}
+    </div>
   );
 }
 

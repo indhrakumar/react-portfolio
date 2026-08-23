@@ -3,13 +3,15 @@ import banner from "../assets/banner.png";
 import { useState, useEffect, useRef } from "react";
 import { ArrowBigRight } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
+import { usePage } from "../context/PageProvider";
 
-function About({ setPage }) {
+function About({ handlePage }) {
   const [card1Visible, setCard1Visible] = useState(false);
   const [card2Visible, setCard2Visible] = useState(false);
   const { isDark } = useTheme();
   const card1Ref = useRef(null);
   const card2Ref = useRef(null);
+  const { singlePage } = usePage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,7 +49,7 @@ function About({ setPage }) {
   const content2 = `I enjoy turning ideas into clean, responsive, and user-friendly web experiences. I focus on writing maintainable code, improving my problem-solving skills, and continuously exploring new technologies to grow as a Full Stack Developer.`;
 
   return (
-    <div className="min-h-[calc(100vh-80px)] px-10 pt-5 pb-20   flex flex-col items-center gap-3 w-full  font-mulish  overflow-hidden">
+    <div className="min-h-screen px-10 pt-25 pb-20   flex flex-col items-center gap-3 w-full  font-mulish  overflow-hidden">
       {/* Heading */}
       <h1
         style={{
@@ -60,12 +62,16 @@ function About({ setPage }) {
       {/* First Card */}
       <div
         ref={card1Ref}
-        className={`tracking-widest ${isDark ? "shadow-[inset_1px_5px_18px_rgba(255,255,255,0.2)]" : "shadow-[inset_0_0_20px_black]"} w-full sm:w-3/4 lg:w-1/2 rounded-lg overflow-hidden me-auto bg-bgCard flex flex-col lg:flex-row gap-5 italic text-text transition-all duration-1000 z-1 ${
+        className={`tracking-widest z-[0] ${
+          isDark
+            ? "shadow-[inset_1px_5px_18px_rgba(255,255,255,0.4),5px_5px_15px_rgba(214,210,210,0.5)]"
+            : "shadow-[inset_0_0_20px_black,4px_10px_25px_rgba(0,0,0,0.5)]"
+        } w-full sm:w-3/4 lg:w-1/2 rounded-lg overflow-hidden mx-auto lg:mx-0 lg:me-auto bg-bgCard flex flex-col lg:flex-row gap-5 italic text-text transition-all duration-1000 z-1 ${
           card1Visible
             ? "opacity-100 translate-x-0"
             : "opacity-0 -translate-x-[200px]"
         }`}>
-        <div className="order-2 my-auto px-4 text-xl text-justify lg:order-1">
+        <div className="order-2 my-auto px-4 py-3 text-xl text-justify lg:order-1">
           <p>{content1}</p>
         </div>
 
@@ -82,12 +88,16 @@ function About({ setPage }) {
       {/* Second Card */}
       <div
         ref={card2Ref}
-        className={`w-full ${isDark ? "shadow-[inset_1px_5px_18px_rgba(255,255,255,0.2)]" : "shadow-[inset_0_0_20px_black]"}  tracking-widest sm:w-3/4 lg:w-1/2 ms-auto mt-10 rounded-lg overflow-hidden bg-bgCard flex flex-col lg:flex-row gap-5 italic text-text transition-all duration-1000 delay-1000 ${
+        className={`w-full ${
+          isDark
+            ? "shadow-[inset_1px_5px_18px_rgba(255,255,255,0.4),5px_5px_15px_rgba(214,210,210,0.5)]"
+            : "shadow-[inset_0_0_20px_black,4px_10px_25px_rgba(0,0,0,0.5)]"
+        }  tracking-widest sm:w-3/4 lg:w-1/2 mx-auto lg:mx-0 lg:ms-auto mt-10 rounded-lg overflow-hidden bg-bgCard flex flex-col lg:flex-row gap-5 italic text-text transition-all duration-1000 delay-500 ${
           card2Visible
             ? "opacity-100 translate-x-0"
             : "opacity-0 translate-x-[200px]"
         }`}>
-        <div className="order-2 text-left px-4 text-xl my-auto">
+        <div className="order-2 text-left px-4 py-3 text-xl my-auto">
           <p>{content2}</p>
         </div>
 
@@ -99,11 +109,13 @@ function About({ setPage }) {
           />
         </div>
       </div>
-      <button
-        onClick={() => setPage("education")}
-        className="flex cursor-pointer text-text px-5 py-2 border border-gray-600 rounded-full bg-blue-600/50 gap-3 text-3xl items-center mt-8 ">
-        Education <ArrowBigRight className="mt-5 -translate-y-2" />
-      </button>
+      {singlePage && (
+        <button
+          onClick={() => handlePage("education")}
+          className="flex cursor-pointer animate-pulse text-text px-7 py-0.5   rounded-full  opacity-90 gap-3 text-xl items-center mt-8 ">
+          Education <ArrowBigRight className="mt-5 -translate-y-2" />
+        </button>
+      )}
     </div>
   );
 }
