@@ -43,3 +43,36 @@
   background-color: aqua;
   border-radius: 9999px;
 }
+@keyframes pageToScroll {
+  0% {
+    left: 4px;
+    width: calc(50% - 4px);
+  }
+
+  50% {
+    left: 4px;
+    width: calc(100% - 8px);
+  }
+
+  100% {
+    left: 50%;
+    width: calc(50% - 4px);
+  }
+}
+
+@keyframes scrollToPage {
+  0% {
+    left: 50%;
+    width: calc(50% - 4px);
+  }
+
+  50% {
+    left: 4px;
+    width: calc(100% - 8px);
+  }
+
+  100% {
+    left: 4px;
+    width: calc(50% - 4px);
+  }
+}

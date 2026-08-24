@@ -10,6 +10,7 @@ import Skills from "./components/Skills";
 import Education from "./components/Education";
 
 import { ThemeContext } from "./context/ThemeContext";
+import { BiDownArrow, BiUpArrow } from "react-icons/bi";
 
 function App() {
   const [page, setPage] = useState("home");
@@ -170,7 +171,13 @@ function AppContent({ page, setPage, isOpen, setIsOpen }) {
           </div>
         </>
       )}
-
+      <button
+        className={` lg:hidden fixed bottom-0 flex items-center justify-center ${isOpen ? "bottom-18" : ""} w-full text-text`}
+        onClick={() => setIsOpen(!isOpen)}>
+        <span className="flex items-center gap-2 bg-bgCard/30 px-3 py-1 rounded-lg backdrop-blur-sm">
+          Menu {isOpen ? <BiDownArrow /> : <BiUpArrow />}{" "}
+        </span>
+      </button>
       {mobileNavigation}
     </div>
   );

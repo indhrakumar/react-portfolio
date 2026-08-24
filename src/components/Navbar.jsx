@@ -1,4 +1,4 @@
-import { MenuIcon, Moon, Sun, X } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 import { usePage } from "../context/PageProvider";
 
@@ -74,25 +74,54 @@ function Navbar({ setPage, isOpen, setIsOpen, page, activePage }) {
       </div>
 
       {/* Mobile */}
-      <div className="lg:hidden flex gap-5">
-        <button
-          onClick={() => setSinglePage(!singlePage)}
-          className="p-3 text-xs me-5 border border-cyan-400 rounded-full">
-          {singlePage ? "Scroll-View" : "Page-View"}
-        </button>
-        <button
-          onClick={() => setIsDark(!isDark)}
-          className={`p-2 border ${
-            isDark
-              ? "border-cyan-600 shadow-[0_0_15px_cyan]"
-              : "border-gray-200 shadow-[0_0_15px_black]"
-          } bg-muted/20 rounded-full`}>
-          {isDark ? <Sun /> : <Moon />}
-        </button>
 
-        <button onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={28} /> : <MenuIcon size={28} />}
-        </button>
+      <div className="lg:hidden flex gap-3">
+        <div className="w-40  flex flex-col gap-3">
+          <div className="flex gap-2">
+            <span className="ms-auto font-bold italic ">Theme</span>
+            <button
+              onClick={() => setIsDark(!isDark)}
+              className={`w-10 rounded-full ${isDark ? "bg-slate-700 border-gray-700 shadow-[inset_0_0_5px_white]" : "bg-white"} border shadow-[inset_0_0_5px_black]`}>
+              <div
+                className={`w-5 h-5 transition-all duration-300 ease-in-out ${isDark ? "bg-black text-white shadow-[0_0_15px_white] ms-auto" : "bg-slate-800 text-yellow-300 shadow-[0_0_5px_black]"} scale-110 text-cyan-400 border-gray-500 border-[0.5px] flex items-center justify-center rounded-full`}>
+                {isDark ? (
+                  <Moon size={15} className="drop-shadow-[0_0_2px_white]" />
+                ) : (
+                  <Sun size={15} />
+                )}
+              </div>
+            </button>
+          </div>
+          <button
+            onClick={() => setSinglePage(!singlePage)}
+            className={`relative p-1 text-sm flex overflow-hidden w-full ${isDark ? "border border-cyan-400 " : "border border-slate-700"}   rounded-full`}>
+            {/* Animated Background */}
+            <span
+              className={`absolute top-1 bottom-1 bg-cyan-400 rounded-full
+    ${singlePage ? "left-1 w-[calc(50%-4px)]" : "left-1/2 w-[calc(50%-4px)]"}
+  `}
+              style={{
+                animation: `${singlePage ? "scrollToPage" : "pageToScroll"} 0.5s ease-in-out`,
+                animationFillMode: "forwards",
+              }}
+            />
+            {/* Page */}
+            <span
+              className={`relative z-10 w-1/2 text-center ${
+                singlePage ? "text-black font-bold" : ""
+              }`}>
+              Page
+            </span>
+
+            {/* Scroll */}
+            <span
+              className={`relative z-10 w-1/2 text-center ${
+                !singlePage ? "text-black font-bold " : " "
+              }`}>
+              Scroll
+            </span>
+          </button>
+        </div>
       </div>
     </nav>
   );
