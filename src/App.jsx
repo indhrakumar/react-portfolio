@@ -146,27 +146,27 @@ function AppContent({ page, setPage, isOpen, setIsOpen }) {
         </div>
       ) : (
         <>
-          <div id="home" data-section className="scroll-mt-20">
+          <div id="home" data-section>
             <Home setPage={setPage} handlePage={handlePage} />
           </div>
 
-          <div id="about" data-section className="scroll-mt-20">
+          <div id="about" data-section className="">
             <About setPage={setPage} />
           </div>
 
-          <div id="education" data-section className="scroll-mt-20">
+          <div id="education" data-section>
             <Education setPage={setPage} />
           </div>
 
-          <div id="skills" data-section className="scroll-mt-20">
+          <div id="skills" data-section>
             <Skills setPage={setPage} />
           </div>
 
-          <div id="projects" data-section className="scroll-mt-20">
+          <div id="projects" data-section>
             <Projects setPage={setPage} />
           </div>
 
-          <div id="contact" data-section className="scroll-mt-20">
+          <div id="contact" data-section>
             <Contact setPage={setPage} />
           </div>
         </>
@@ -174,7 +174,7 @@ function AppContent({ page, setPage, isOpen, setIsOpen }) {
       <button
         className={` lg:hidden fixed bottom-0 flex items-center justify-center ${isOpen ? "bottom-18" : ""} w-full text-text`}
         onClick={() => setIsOpen(!isOpen)}>
-        <span className="flex items-center gap-2 bg-bgCard/30 px-3 py-1 rounded-lg backdrop-blur-sm">
+        <span className="flex items-center gap-2 bg-bgCard/30 px-3 py-1 rounded-t-lg backdrop-blur-sm">
           Menu {isOpen ? <BiDownArrow /> : <BiUpArrow />}{" "}
         </span>
       </button>
