@@ -1,5 +1,6 @@
 import SkillsCard from "./SkillsCard";
 import { usePage } from "../context/PageProvider";
+import { ArrowBigRight } from "lucide-react";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -24,9 +25,9 @@ import {
 
 import { VscVscode } from "react-icons/vsc";
 
-const Skills = () => {
+const Skills = ({ handlePage }) => {
   const { isDark } = useTheme();
-  // const { singlePage } = usePage();
+  const { singlePage } = usePage();
   const skillsDetails = [
     {
       title: "HTML",
@@ -230,7 +231,7 @@ const Skills = () => {
     },
   ];
   return (
-    <div className="min-h-screen pt-25">
+    <div className="min-h-screen pt-25 pb-50">
       <h1
         className="text-center text-text1 text-7xl font-bold font-poppins"
         style={{ textShadow: isDark ? "0 0 20px" : "" }}>
@@ -253,6 +254,16 @@ const Skills = () => {
           />
         ))}
       </div>
+      {singlePage && (
+        <div className={`w-full flex items-center justify-center text-text`}>
+          <button
+            onClick={() => handlePage("projects")}
+            className="flex cursor-pointer gap-3   text-xl  animate-pulse items-center mt-8">
+            My Projects
+            <ArrowBigRight className="mt-5 -translate-y-2" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -39,7 +39,8 @@ function Home({ handlePage }) {
         <div className=" flex items-center justify-center">
           <button
             onClick={() => handlePage("about")}
-            className={`z-9  border cursor-pointer ${isDark ? " shadow-[inset_0_0_10px_black] bg-gradient-to-bl text-black from-white via-cyan-200 to-cyan-400" : " shadow-[inset_0_0_10px_black] bg-gradient-to-bl from-white via-cyan-200 to-cyan-400 z-[6]"}   rounded-full  flex items-center justify-center w-1/2 font-bold tracking-widest text-xl  p-3`}>
+            className={`z-9
+              border cursor-pointer ${isDark ? " shadow-[inset_0_0_10px_black] bg-gradient-to-bl text-black from-white via-cyan-200 to-cyan-400" : " shadow-[inset_0_0_10px_black] bg-gradient-to-bl from-white via-cyan-200 to-cyan-400 z-[6]"}   rounded-full  flex items-center justify-center w-1/2 font-bold tracking-widest text-xl  p-3`}>
             Explore
           </button>
         </div>

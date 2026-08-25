@@ -95,7 +95,7 @@ function AppContent({ page, setPage, isOpen, setIsOpen }) {
 
   const mobileNavigation = (
     <div className={`w-full ${isOpen ? "visible" : "hidden"} relative`}>
-      <div className="fixed bottom-0 left-0 w-full lg:hidden py-5 bg-bgDark/30 backdrop-blur-sm overflow-x-auto overflow-y-hidden scrollbar-hide">
+      <div className="fixed z-9999 bottom-0 left-0 w-full lg:hidden py-5 bg-bgDark/30 backdrop-blur-sm overflow-x-auto overflow-y-hidden scrollbar-hide">
         <div className="flex w-max gap-5 px-[calc(50vw-42.5px)]">
           {pages.map((item) => (
             <button
@@ -138,7 +138,9 @@ function AppContent({ page, setPage, isOpen, setIsOpen }) {
             <Education setPage={setPage} handlePage={handlePage} />
           )}
 
-          {page === "skills" && <Skills setPage={setPage} />}
+          {page === "skills" && (
+            <Skills setPage={setPage} handlePage={handlePage} />
+          )}
 
           {page === "projects" && <Projects setPage={setPage} />}
 
@@ -172,9 +174,9 @@ function AppContent({ page, setPage, isOpen, setIsOpen }) {
         </>
       )}
       <button
-        className={` lg:hidden fixed bottom-0 flex items-center justify-center ${isOpen ? "bottom-18" : ""} w-full text-text`}
+        className={` lg:hidden z-[9999] fixed bottom-0 flex items-center justify-center ${isOpen ? "bottom-18" : ""} w-full text-text`}
         onClick={() => setIsOpen(!isOpen)}>
-        <span className="flex items-center gap-2 bg-bgCard/30 px-3 py-1 rounded-t-lg backdrop-blur-sm">
+        <span className="flex items-center font-bold gap-2 bg-bgCard/30 px-3 py-1 rounded-t-lg backdrop-blur-sm">
           Menu {isOpen ? <BiDownArrow /> : <BiUpArrow />}{" "}
         </span>
       </button>
