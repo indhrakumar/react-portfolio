@@ -8,18 +8,27 @@ import mealapi from "../assets/project-img/mealexplorer.png";
 import { FaCss3Alt, FaHtml5, FaReact } from "react-icons/fa";
 import { SiTailwindcss } from "react-icons/si";
 import { RiJavascriptFill } from "react-icons/ri";
+import { useTheme } from "../context/ThemeContext";
 
 function Projects() {
+  const { isDark } = useTheme();
   const projects = [
     {
       title: "Weather App",
       image: weatherApp,
       about:
-        "React + Vite Weather App Features Search any city Temperature Humidity Wind Speed Latitude & Longitude Dynamic Weather Icons Error Handling",
+        "Real-time weather information with city search, temperature, humidity, wind speed, coordinates, and dynamic weather icons",
       techIcon: (
         <>
-          <FaHtml5 color={"orangered"} /> <FaCss3Alt color={"blue"} />
-          <FaReact color={"cyan"} /> <SiTailwindcss color={"cyan"} />{" "}
+          <FaReact
+            className={`text-cyan-300 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />{" "}
+          <SiTailwindcss
+            className={`text-cyan-300 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />
+          <RiJavascriptFill
+            className={`text-yellow-400 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />{" "}
         </>
       ),
       repolink: "https://github.com/indhrakumar/weather-api.git",
@@ -29,11 +38,18 @@ function Projects() {
       title: "Loan Tracker",
       image: loantracking,
       about:
-        "React + Vite Weather App Features Search any city Temperature Humidity Wind Speed Latitude & Longitude Dynamic Weather Icons Error Handling",
+        "Track loans, payments, remaining balances, due dates, and repayment progress with a clean dashboard for easy financial management.",
       techIcon: (
         <>
-          <FaHtml5 color={"orangered"} /> <FaCss3Alt color={"blue"} />
-          <RiJavascriptFill color={"yellow"} />{" "}
+          <FaHtml5
+            className={`text-orange-500 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />{" "}
+          <FaCss3Alt
+            className={`text-blue-500 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />
+          <RiJavascriptFill
+            className={`text-yellow-400 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />{" "}
         </>
       ),
       repolink: "https://github.com/indhrakumar/loan-track.ergit",
@@ -43,11 +59,18 @@ function Projects() {
       title: "Meal Explorer",
       image: mealapi,
       about:
-        "React + Vite Weather App Features Search any city Temperature Humidity Wind Speed Latitude & Longitude Dynamic Weather Icons Error Handling",
+        "Explore meals and recipes by category or search, with detailed ingredients, instructions, and food images.",
       techIcon: (
         <>
-          <FaHtml5 color={"orangered"} /> <FaCss3Alt color={"blue"} />
-          <FaReact color={"cyan"} /> <SiTailwindcss color={"cyan"} />{" "}
+          <FaHtml5
+            className={`text-orange-500 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />
+          <SiTailwindcss
+            className={`text-cyan-400 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />
+          <RiJavascriptFill
+            className={`text-yellow-400 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />{" "}
         </>
       ),
       repolink: "https://github.com/indhrakumar/meal-api.git",
@@ -57,11 +80,21 @@ function Projects() {
       title: "QR Code Generator",
       image: qr,
       about:
-        "React + Vite Weather App Features Search any city Temperature Humidity Wind Speed Latitude & Longitude Dynamic Weather Icons Error Handling",
+        "Generate QR codes instantly from text or URLs with a simple interface and easy download functionality.",
       techIcon: (
         <>
-          <FaHtml5 color={"orangered"} /> <FaCss3Alt color={"blue"} />
-          <FaReact color={"cyan"} /> <SiTailwindcss color={"cyan"} />{" "}
+          <FaHtml5
+            className={`text-orange-500 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />
+          <RiJavascriptFill
+            className={`text-yellow-400 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />
+          <FaReact
+            className={`text-cyan-400 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />
+          <SiTailwindcss
+            className={`text-cyan-400 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />{" "}
         </>
       ),
       repolink: "https://github.com/indhrakumar/QR-code-generator.git",
@@ -71,11 +104,21 @@ function Projects() {
       title: "Shopping Cart",
       image: shop,
       about:
-        "React + Vite Weather App Features Search any city Temperature Humidity Wind Speed Latitude & Longitude Dynamic Weather Icons Error Handling",
+        "Browse products, add or remove items from the cart, update quantities, and view the total price with a responsive shopping experience.",
       techIcon: (
         <>
-          <FaHtml5 color={"orangered"} /> <FaCss3Alt color={"blue"} />
-          <FaReact color={"cyan"} /> <SiTailwindcss color={"cyan"} />{" "}
+          <FaHtml5
+            className={`text-orange-500 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />
+          <RiJavascriptFill
+            className={`text-yellow-400 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />
+          <FaReact
+            className={`text-cyan-400 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />
+          <SiTailwindcss
+            className={`text-cyan-400 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />{" "}
         </>
       ),
       repolink: "https://github.com/indhrakumar/Shopping-Cart.git",
@@ -85,11 +128,18 @@ function Projects() {
       title: "ToDo App",
       image: todo,
       about:
-        "React + Vite Weather App Features Search any city Temperature Humidity Wind Speed Latitude & Longitude Dynamic Weather Icons Error Handling",
+        "Create, manage, edit, and complete tasks with status tracking, filtering, and an intuitive task management interface.",
       techIcon: (
         <>
-          <FaHtml5 color={"orangered"} /> <FaCss3Alt color={"blue"} />
-          <FaReact color={"cyan"} /> <SiTailwindcss color={"cyan"} />{" "}
+          <FaHtml5
+            className={`text-orange-500 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />
+          <SiTailwindcss
+            className={`text-cyan-400 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />
+          <RiJavascriptFill
+            className={`text-yellow-400 h-full p-2 rounded-full border  ${isDark ? "bg-black/30 border-black shadow-[inset_0_0_7px_rgba(255,255,255,0.7)]" : "bg-slate-700 border-white shadow-[inset_0_0_5px_white]"} w-fit`}
+          />{" "}
         </>
       ),
       repolink: "https://github.com/indhrakumar/To-Do.git",

@@ -12,15 +12,17 @@ const ProjectCard = ({ title, image, repolink, openLink, techIcon, about }) => {
         <img src={image} alt="" className="w-full h-full object-cover  " />
       </div>
       <div className="px-3 py-2">
-        <p className="h-35 italic font-semibold text-lg tracking-wide md:text-xl overflow-y-scroll ">
+        <p className="h-35 italic font-semibold text-lg tracking-wide md:text-xl overflow-y-auto ">
           <span className={`block not-italic text-muted text-sm`}>
             About This Project
           </span>
           {about}
         </p>
-        <div className="flex w-full text-lg gap-2 my-3 items-center">
+        <div className="flex w-full text-lg gap-2 my-3  py-6 items-center">
           <span className="text-lg">Tech Used</span>
-          <span className="flex-1 text-2xl flex gap-3 ms-auto">{techIcon}</span>
+          <span className="flex-1 text-3xl flex gap-5 h-full items-center ms-auto">
+            {techIcon}
+          </span>
         </div>
         <div className="text-sm flex items-center justify-between px-3">
           <a

@@ -29,35 +29,35 @@ function Navbar({ setPage, isOpen, setIsOpen, page, activePage }) {
       </div>
 
       {/* Desktop Menu */}
-      <div className="hidden lg:flex gap-6">
+      <div className="hidden lg:flex gap-5">
         <button
           onClick={() => handlePage("home")}
-          className={`${activePage === "home" ? " -translate-y-2 scale-105 text-blue-700" : " none"} font-semibold text-lg`}>
+          className={`${activePage === "home" ? " -translate-y-2 bg-cyan-400 text-black ease-in-out  rounded-lg transition-all duration-500" : " none"} px-3  font-semibold text-lg`}>
           Home
         </button>
         <button
           onClick={() => handlePage("about")}
-          className={`${activePage === "about" ? " -translate-y-2 scale-105 text-blue-700" : " none"} font-semibold text-lg`}>
+          className={`${activePage === "about" ? " -translate-y-2 bg-cyan-400 text-black ease-in-out  rounded-lg transition-all duration-500" : " none"} px-3  font-semibold text-lg`}>
           About
         </button>
         <button
           onClick={() => handlePage("education")}
-          className={`${activePage === "education" ? " -translate-y-2 scale-105 text-blue-700" : " none"} font-semibold text-lg`}>
+          className={`${activePage === "education" ? " -translate-y-2 bg-cyan-400 text-black ease-in-out  rounded-lg transition-all duration-500" : " none"} px-3  font-semibold text-lg`}>
           Education
         </button>
         <button
           onClick={() => handlePage("skills")}
-          className={`${activePage === "skills" ? " -translate-y-2 scale-105 text-blue-700" : " none"} font-semibold text-lg`}>
+          className={`${activePage === "skills" ? " -translate-y-2 bg-cyan-400  text-black ease-in-out rounded-lg transition-all duration-500" : " none"} px-3  font-semibold text-lg`}>
           Skills
         </button>
         <button
           onClick={() => handlePage("projects")}
-          className={`${activePage === "projects" ? " -translate-y-4 scale-105 text-blue-700" : " none"} font-semibold text-lg`}>
+          className={`${activePage === "projects" ? " -translate-y-4 bg-cyan-400   rounded-lg transition-all duration-500" : " none"} px-3  font-semibold text-lg`}>
           Projects
         </button>
         <button
           onClick={() => handlePage("contact")}
-          className={`${activePage === "contact" ? " -translate-y-2 scale-105 text-blue-700" : " none"} font-semibold text-lg`}>
+          className={`${activePage === "contact" ? " -translate-y-2 bg-cyan-400 text-black ease-in-out  rounded-lg transition-all duration-500" : " none"} px-3  font-semibold text-lg`}>
           Contact
         </button>
       </div>
